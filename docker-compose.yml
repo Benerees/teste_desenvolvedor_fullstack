@@ -1,6 +1,7 @@
-version: '2'
+version: '3.9'
 services:
-  library:
+  node:
+    container_name: teste_backend
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,3 +15,14 @@ services:
      - /home/app/library/node_modules
     expose:
     - 4000
+
+  database:
+    image: postgres
+    container_name: teste_database
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+     - POSTGRES_USER=${DB_USER}
+     - POSTGRES_PASSWORD=${DB_PASSWORD}
+     - POSTGRES_DB=${DB_NAME}

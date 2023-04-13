@@ -15,6 +15,7 @@ services:
      - /home/app/library/node_modules
     expose:
     - 4000
+    restart: always
 
   database:
     image: postgres

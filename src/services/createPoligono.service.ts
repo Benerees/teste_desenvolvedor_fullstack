@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { Sequelize } from "sequelize";
 
 export class CreatePoligono {
     async execute(req: Request, res: Response) {
@@ -33,7 +34,5 @@ export class CreatePoligono {
 
             return res.status(401).json(response);
         }
-
-        return
     }
 }

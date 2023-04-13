@@ -1,8 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const createPoligono_controller_1 = require("../controllers/createPoligono.controller");
-const router = (0, express_1.Router)();
-router.get('/v1', createPoligono_controller_1.returnMsg);
+var express_1 = require("express");
+var createPoligono_controller_1 = require("../controllers/createPoligono.controller");
+var router = (0, express_1.Router)();
 router.post('/v1/auth', new createPoligono_controller_1.createPoligonoController().returnAuth);
+router.post('/create', new createPoligono_controller_1.createPoligonoController().createBanco);
+router.post('/login');
+router.post('/posts');
+router.put('/posts/{id}');
+router.get('/posts');
+router.get('/posts/{id}');
+router.delete('/posts/{id}');
 exports.default = router;

@@ -1,15 +1,6 @@
 import { Request, Response } from "express";
 import { CreatePoligono } from "../services/createPoligono.service"
-
-export const returnMsg = (req: Request, res: Response) => {
-    const response =
-    {
-        status: '200',
-        message: 'Bem vindo a API GeoPoly!'
-    }
-    console.log(response);
-    return res.status(200).json(response);
-}
+import  {coordenadasInstance} from "../model/coordenadas";
 
 export class createPoligonoController {
 
@@ -19,6 +10,13 @@ export class createPoligonoController {
         const result = await service.execute(req, res)
 
         return result;
+    }
+
+    async createBanco(req: Request, res: Response){
+        const id = 1;
+        await coordenadasInstance.create({...req.body, id})
+
+        return;
     }
 
 

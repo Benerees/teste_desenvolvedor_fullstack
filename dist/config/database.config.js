@@ -1,8 +1,8 @@
 "use strict";
-// import {Sequelize} from "sequelize"
-// const db = new Sequelize("app", "admin", "admin",{
-//     storage:"./database.sqlite",
-//     dialect:"sqlite",
-//     logging: false
-// })
-// export default db
+Object.defineProperty(exports, "__esModule", { value: true });
+var sequelize_1 = require("sequelize");
+var sequelize = new sequelize_1.Sequelize("GEO", "teste", "teste", {
+    host: "localhost",
+    dialect: 'postgres'
+});
+exports.default = sequelize;

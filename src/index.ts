@@ -1,17 +1,16 @@
 import express from 'express';
 import indexRoutes from './routes/index';
-// import db from './config/database.config'
+import { Sequelize } from "sequelize";
+import sequelize from "./config/database.config"
 
-// db.authenticate()
-
-// db.sync().then(()=>{
-//     console.log("conectado no db")
-// });
+sequelize.sync().then(()=>{
+    console.log("conectado no db")
+})
 
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(indexRoutes)
 

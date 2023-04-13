@@ -1,9 +1,18 @@
 import {Router} from 'express'
-import {returnMsg, createPoligonoController} from '../controllers/createPoligono.controller'
+import {createPoligonoController} from '../controllers/createPoligono.controller'
 
 const router = Router();
 
-router.get('/v1', returnMsg)
-router.post('/v1/auth', new createPoligonoController().returnAuth)
+router.post('/v1/auth', new createPoligonoController().returnAuth);
+router.post('/create', new createPoligonoController().createBanco);
+
+
+router.post('/login');
+
+router.post('/posts');
+router.put('/posts/{id}');
+router.get('/posts');
+router.get('/posts/{id}');
+router.delete('/posts/{id}');
 
 export default router;

@@ -6,8 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var index_1 = __importDefault(require("./routes/index"));
 var database_config_1 = __importDefault(require("./config/database.config"));
+var User_controller_1 = require("./controllers/User.controller");
 database_config_1.default.sync().then(function () {
-    console.log("conectado no db");
+    new User_controller_1.UserController().createUsuario();
 });
 var app = (0, express_1.default)();
 app.use(express_1.default.json());

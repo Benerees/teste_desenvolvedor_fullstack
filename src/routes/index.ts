@@ -1,18 +1,15 @@
 import {Router} from 'express'
-import {createPoligonoController} from '../controllers/createPoligono.controller'
+import {PoligonoController} from '../controllers/Poligono.controller'
+import { UserController } from '../controllers/User.controller';
 
 const router = Router();
 
-router.post('/v1/auth', new createPoligonoController().returnAuth);
-router.post('/create', new createPoligonoController().createBanco);
+router.post('/login', new UserController().login);
 
-
-router.post('/login');
-
-router.post('/posts');
-router.put('/posts/{id}');
-router.get('/posts');
-router.get('/posts/{id}');
-router.delete('/posts/{id}');
+router.post('/posts',new PoligonoController().createPoligono);
+router.put('/posts/:id', new PoligonoController().put);
+router.get('/posts', new PoligonoController().getPoligonos);
+router.get('/posts/:id', new PoligonoController().getId);
+router.delete('/posts/:id', new PoligonoController().delete);
 
 export default router;

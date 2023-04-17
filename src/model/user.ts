@@ -23,7 +23,6 @@ export const User = sequelize.define('usuarios', {
     },
     email: {
         type: DataTypes.STRING
-        // allowNull defaults to true
     }
 });
 

@@ -4,14 +4,6 @@ import  jwt  from "jsonwebtoken"
 
 export class PoligonoController {
 
-    async returnAuth(req: Request, res: Response) {
-        const service = new PoligonoService();
-
-        const result = await service.execute(req, res)
-
-        return result;
-    }
-
     async createPoligono(req: Request, res: Response) {
         const token = req.headers.authorization
 

@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:18.14.2
 
 USER root
 
@@ -10,6 +10,7 @@ COPY package.json npm-shrinkwrap.json $HOME/library/
 
 WORKDIR $HOME/library
 RUN npm cache clean --force && npm install
+
 
 COPY . $HOME/library
 

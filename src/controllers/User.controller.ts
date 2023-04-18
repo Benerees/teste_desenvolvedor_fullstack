@@ -10,12 +10,12 @@ export class UserController {
 
     const testeUsuario = {
       id: '1',
-      name: 'rees',
-      password: 'tasd',
-      email: 'teste@atas.com'
+      name: 'teste',
+      password: 'teste',
+      email: 'teste@gmail.com'
     }
 
-    User.findOne({ where: { email: 'teste@atas.com' } })
+    User.findOne({ where: { email: 'teste@gmail.com' } })
       .then(data => {
 
         if (!data) {

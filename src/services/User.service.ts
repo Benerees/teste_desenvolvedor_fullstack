@@ -3,6 +3,7 @@ import { User } from "../model/user";
 import  jwt  from "jsonwebtoken";
 
 export class Userservice {
+    
     async login(req: Request, res: Response) {
         const body = req.body
 
@@ -12,15 +13,15 @@ export class Userservice {
                     const message = {
                         message: 'Usuário não encontrado'
                     };
-                    return res.status(200).json(message);
+                    return res.status(204).json(message);
                 }
 
-                const dadosUsuario = data.dataValues
+                const userData = data.dataValues
 
-                if(dadosUsuario.password == body.password){
-                    const token = jwt.sign({ sub: dadosUsuario.email}, 'auth')
+                if(userData.password == body.password){
+                    const token = jwt.sign({ sub: userData.email}, 'auth')
 
-                    return res.status(200).json({token:token})
+                    return res.status(204).json({token:token})
                 }else{
                     const message = {
                         message: 'Credenciais inválidas'

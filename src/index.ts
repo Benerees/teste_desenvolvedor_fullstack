@@ -2,11 +2,13 @@ import express from 'express';
 import indexRoutes from './routes/index';
 import sequelize from "./config/database.config"
 import { UserController } from './controllers/User.controller';
-import { PoligonoController } from './controllers/Poligono.controller';
 
-sequelize.sync().then(()=>{
-    new UserController().createUsuario();
- })
+setTimeout(() => {
+    sequelize.sync().then(()=>{
+        new UserController().createUsuario();
+    })
+}, 1000);
+
 
 const app = express();
 

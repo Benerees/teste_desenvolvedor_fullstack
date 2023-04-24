@@ -1,5 +1,5 @@
 
-import { DataTypes, Model} from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.config";
 
 interface userAttributes {
@@ -25,9 +25,6 @@ export const User = sequelize.define('usuarios', {
         type: DataTypes.STRING
     }
 });
-
-
-
 
 export class userInstance extends Model<userAttributes>{ }
 

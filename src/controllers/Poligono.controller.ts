@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PoligonoService } from "../services/Poligono.service"
-import  jwt  from "jsonwebtoken"
+import jwt from "jsonwebtoken"
 
 export class PoligonoController {
 
@@ -20,10 +20,7 @@ export class PoligonoController {
         const service = new PoligonoService();
 
         try {
-            const result = await service.create(req, res);
-
-            return result;
-
+            return await service.create(req, res);
         } catch (err) {
             return res.status(400).json(err);
         }
@@ -45,9 +42,7 @@ export class PoligonoController {
         const service = new PoligonoService();
 
         try {
-            const result = await service.get(req, res);
-
-            return result
+            return await service.get(req, res);
         } catch (err) {
             return res.status(400).json(err)
         }
@@ -69,9 +64,7 @@ export class PoligonoController {
         const service = new PoligonoService();
 
         try {
-            const result = await service.getId(req, res);
-
-            return result
+            return await service.getId(req, res);
         } catch (err) {
             return res.status(400).json(err);
         }
@@ -93,7 +86,7 @@ export class PoligonoController {
         const service = new PoligonoService();
 
         try {
-            const result = await service.delete(req, res)
+            return await service.delete(req, res)
         } catch (err) {
             return res.status(400).json(err);
         }
@@ -115,7 +108,7 @@ export class PoligonoController {
         const service = new PoligonoService();
 
         try {
-            const result = await service.put(req, res)
+            return await service.put(req, res)
         } catch (err) {
             return res.status(400).json(err);
         }

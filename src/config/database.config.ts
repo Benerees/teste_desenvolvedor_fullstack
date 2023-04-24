@@ -1,7 +1,7 @@
 import {Sequelize} from "sequelize";
 
 const sequelize = new Sequelize("GEO", "teste", "teste",{
-    host: "localhost",
+    host: '172.17.0.1',
     dialect: 'postgres'
 })
 

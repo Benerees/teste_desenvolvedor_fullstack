@@ -7,9 +7,11 @@ var express_1 = __importDefault(require("express"));
 var index_1 = __importDefault(require("./routes/index"));
 var database_config_1 = __importDefault(require("./config/database.config"));
 var User_controller_1 = require("./controllers/User.controller");
-database_config_1.default.sync().then(function () {
-    new User_controller_1.UserController().createUsuario();
-});
+setTimeout(function () {
+    database_config_1.default.sync().then(function () {
+        new User_controller_1.UserController().createUsuario();
+    });
+}, 1000);
 var app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));

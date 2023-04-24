@@ -1,5 +1,5 @@
 import sequelize from "../config/database.config";
-import { ARRAY, DataTypes, Model } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 
 interface PoligonoAttributes {
     id: string;

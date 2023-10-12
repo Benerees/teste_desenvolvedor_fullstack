@@ -1,9 +1,10 @@
 import { randomUUID } from "crypto";
 import { Request, Response } from "express";
 import { Poligono } from "../model/poligono";
+import { PoligonoNotFoundError } from "../errors/poligono-not-found-error";
 
 export class PoligonoService {
-    
+
     async create(req: Request, res: Response) {
         const coordinatesJson = req.body.features[0].geometry.coordinates
 
@@ -18,38 +19,29 @@ export class PoligonoService {
             coordinates.latitude.push(x[1]);
         });
 
-        Poligono.create(coordinates)
-            .then(data => {
-                return res.status(201).json({ message: 'Poligono cadastrado!' });
-            })
-            .catch(error => {
-                console.log(error)
-                return res.status(400).json(error);
-            })
+        const result = await Poligono.create(coordinates)
+        
+        return result.dataValues;
     }
 
     async get(req: Request, res: Response) {
-        Poligono.findAll({ order: [['updatedAt', 'DESC']] })
-            .then(data => {
-                return res.status(200).json(data);
-            })
-            .catch(error => {
-                console.log(error)
-                return res.status(400).json(error);
-            })
+        const data = await Poligono.findAll({ order: [['updatedAt', 'DESC']] })
+
+        if (data.length === 0)
+            throw new PoligonoNotFoundError();
+        
+        return data[0].dataValues
     }
 
     async getId(req: Request, res: Response) {
         const { id } = req.params;
 
-        Poligono.findByPk(id)
-            .then(data => {
-                return res.status(200).json(data);
-            })
-            .catch(error => {
-                console.log(error)
-                return res.status(400).json(error);
-            })
+        const data = await Poligono.findByPk(id)
+
+        if (!data)
+            throw new PoligonoNotFoundError();
+        
+        return data.dataValues
     }
 
     async put(req: Request, res: Response) {
@@ -67,26 +59,16 @@ export class PoligonoService {
 
         const { id } = req.params;
 
-        Poligono.update(coordinates, { where: { id: id } })
-            .then(data => {
-                return res.status(200).json(data);
-            })
-            .catch(error => {
-                console.log(error)
-                return res.status(400).json(error);
-            })
+        const result = await Poligono.update(coordinates, { where: { id: id } })
+        
+        return result
     }
 
     async delete(req: Request, res: Response) {
         const { id } = req.params;
 
-        Poligono.destroy({ where: { id: id } })
-            .then(data => {
-                return res.status(200).json(data);
-            })
-            .catch(error => {
-                console.log(error)
-                return res.status(400).json(error);
-            })
+        await Poligono.destroy({ where: { id: id } })
+        
+        return true
     }
 }

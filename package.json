@@ -4,7 +4,7 @@
     "@types/node": "^18.15.11",
     "concurrently": "^8.0.1",
     "jsonwebtoken": "^9.0.0",
-    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
     "reflect-metadata": "^0.1.13",
@@ -23,7 +23,7 @@
     "uuid": "^9.0.0"
   },
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
+    "dev": "npx ts-node ./src/index.ts",
     "build": "tsc --watch"
   }
 }

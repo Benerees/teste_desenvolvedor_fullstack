@@ -4,23 +4,11 @@ import jwt from "jsonwebtoken"
 import { tokenNotFoundError } from "../errors/token-not-found-error";
 import { tokenInvalidError } from "../errors/token-invalid-error";
 
+const service = new PoligonoService()
+
 export class PoligonoController {
 
     async createPoligono(req: Request, res: Response) {
-        const token = req.headers.authorization
-
-        if (!token) {
-            return res.status(401).json({ message: new tokenNotFoundError().message });
-        }
-
-        const jwtError = await jwt.verify(token, 'auth', (err: any, decoded: any) => {
-            return err
-        });
-
-        if (jwtError != null)
-            return res.status(403).json({ message: new tokenInvalidError().message });
-
-        const service = new PoligonoService()
 
         try {
             const result = await service.create(req, res);
@@ -38,21 +26,6 @@ export class PoligonoController {
     }
 
     async getPoligonos(req: Request, res: Response) {
-        const token = req.headers.authorization
-
-        if (!token) {
-            return res.status(401).json({ message: new tokenNotFoundError().message });
-        }
-
-        const jwtError = await jwt.verify(token, 'auth', (err: any, decoded: any) => {
-            return err
-        });
-
-        if (jwtError != null)
-            return res.status(403).json({ message: new tokenInvalidError().message });
-
-        const service = new PoligonoService()
-
         try {
             const result = await service.get(req, res);
 
@@ -69,20 +42,6 @@ export class PoligonoController {
     }
 
     async getId(req: Request, res: Response) {
-        const token = req.headers.authorization
-
-        if (!token) {
-            return res.status(401).json({ message: new tokenNotFoundError().message });
-        }
-
-        const jwtError = await jwt.verify(token, 'auth', (err: any, decoded: any) => {
-            return err
-        });
-
-        if (jwtError != null)
-            return res.status(403).json({ message: new tokenInvalidError().message });
-
-        const service = new PoligonoService()
         try {
             const result = await service.getId(req, res);
 
@@ -99,20 +58,6 @@ export class PoligonoController {
     }
 
     async delete(req: Request, res: Response) {
-        const token = req.headers.authorization
-
-        if (!token) {
-            return res.status(401).json({ message: new tokenNotFoundError().message });
-        }
-
-        const jwtError = await jwt.verify(token, 'auth', (err: any, decoded: any) => {
-            return err
-        });
-
-        if (jwtError != null)
-            return res.status(403).json({ message: new tokenInvalidError().message });
-
-        const service = new PoligonoService()
         try {
             const result = await service.delete(req, res)
 
@@ -129,20 +74,6 @@ export class PoligonoController {
     }
 
     async put(req: Request, res: Response) {
-        const token = req.headers.authorization
-
-        if (!token) {
-            return res.status(401).json({ message: new tokenNotFoundError().message });
-        }
-
-        const jwtError = await jwt.verify(token, 'auth', (err: any, decoded: any) => {
-            return err
-        });
-
-        if (jwtError != null)
-            return res.status(403).json({ message: new tokenInvalidError().message });
-
-        const service = new PoligonoService()
         try {
             const result = await service.put(req, res)
 

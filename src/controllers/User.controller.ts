@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { Userservice } from "../services/User.service";
 import { User } from "../model/user";
 
+const service = new Userservice();
+
 export class UserController {
 
   async createUsuario() {
@@ -25,8 +27,6 @@ export class UserController {
   }
 
   async login(req: Request, res: Response) {
-    const service = new Userservice();
-
     try {
       const result = await service.login(req, res)
       

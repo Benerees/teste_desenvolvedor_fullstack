@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: node_modules/.bin/nodemon --exec npm run dev
+    command: npx ts-node ./src/index.ts
     environment:
       NODE_ENV: development
     ports:

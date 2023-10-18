@@ -40,7 +40,7 @@ export class PoligonoController {
 
     async getId(req: Request, res: Response) {
         try {
-            const result = await service.getId(req, res);
+            const result = await service.getById(req, res);
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {

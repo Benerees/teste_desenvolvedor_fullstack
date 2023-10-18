@@ -6,26 +6,6 @@ const service = new Userservice();
 
 export class UserController {
 
-  async createUsuario() {
-    const testeUsuario = {
-      id: '1',
-      name: 'teste',
-      password: 'teste',
-      email: 'teste@gmail.com'
-    }
-
-    User.findOne({ where: { email: 'teste@gmail.com' } })
-      .then(data => {
-        if (!data) {
-          User.create(testeUsuario)
-            .then(data => { })
-            .catch(err => {
-              console.log(err)
-            });
-        }
-      })
-  }
-
   async login(req: Request, res: Response) {
     try {
       const result = await service.login(req, res)

@@ -9,7 +9,7 @@ interface userAttributes {
     email: string;
 }
 
-export const User = sequelize.define('usuarios', {
+export const User = sequelize.define('user', {
     id: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,7 +24,12 @@ export const User = sequelize.define('usuarios', {
     email: {
         type: DataTypes.STRING
     }
-});
+},
+{
+    freezeTableName: true,
+    tableName: "user"
+}
+);
 
 export class userInstance extends Model<userAttributes>{ }
 
@@ -54,7 +59,9 @@ userInstance.init(
 
     },
     {
+        freezeTableName: true,
         sequelize: sequelize,
-        tableName: "usuarios"
+        tableName: "user",
+        
     }
 );

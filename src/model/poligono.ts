@@ -24,7 +24,12 @@ export const Poligono = sequelize.define('poligono', {
         type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false
     }
-});
+},
+    {
+        freezeTableName: true,
+        tableName: "poligono",
+    }
+);
 
 export class PoligonoInstance extends Model<PoligonoAttributes>{ }
 
@@ -48,7 +53,8 @@ PoligonoInstance.init(
         }
     },
     {
+        freezeTableName: true,
         sequelize: sequelize,
-        tableName: "poligono"
+        tableName: "poligono",
     }
 );

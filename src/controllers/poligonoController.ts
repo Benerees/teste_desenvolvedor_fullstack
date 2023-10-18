@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
-import { PoligonoService } from "../services/Poligono.service"
-import jwt from "jsonwebtoken"
-import { tokenNotFoundError } from "../errors/token-not-found-error";
-import { tokenInvalidError } from "../errors/token-invalid-error";
+import { PoligonoService } from "../services/poligonoService"
 
 const service = new PoligonoService()
 

@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { PoligonoController } from '../controllers/Poligono.controller'
-import { UserController } from '../controllers/User.controller';
-import { Userservice } from '../services/User.service';
-import authTokenMiddleware from '../middlewares/authToken-middlewaree';
+import { PoligonoController } from '../controllers/poligonoController'
+import { UserController } from '../controllers/userController';
+import { Userservice } from '../services/userService';
+import authTokenMiddleware from '../middlewares/authTokenMiddlewaree';
 
 const router = Router();
 const userController = new UserController()

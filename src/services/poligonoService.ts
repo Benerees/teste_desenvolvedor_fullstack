@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { Request, Response } from "express";
 import { Poligono } from "../model/poligono";
-import { PoligonoNotFoundError } from "../errors/poligono-not-found-error";
+import { PoligonoNotFoundError } from "../errors/poligonoNotFoundError";
 
 export class PoligonoService {
 

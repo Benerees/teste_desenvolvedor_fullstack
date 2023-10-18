@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { User } from "../model/user";
 import jwt from "jsonwebtoken";
-import { userNotFoundError } from "../errors/user-not-found-error";
-import { userInvalidCredentials } from "../errors/user-invalid-credentials-error";
+import { userNotFoundError } from "../errors/userNotFoundError";
+import { userInvalidCredentials } from "../errors/userInvalidCredentialsError";
 
 export class Userservice {
     async login(req: Request, res: Response) {

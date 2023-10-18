@@ -33,7 +33,7 @@ export class PoligonoService {
         return data[0].dataValues
     }
 
-    async getId(req: Request, res: Response) {
+    async getById(req: Request, res: Response) {
         const { id } = req.params;
 
         const data = await Poligono.findByPk(id)

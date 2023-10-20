@@ -4,6 +4,7 @@
     "password": "teste",
     "database": "GEO",
     "host": "172.17.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "sync": true
   }
 }

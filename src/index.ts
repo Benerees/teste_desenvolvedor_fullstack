@@ -4,7 +4,7 @@ import sequelize from "./config/database.config"
 import { UserController } from './controllers/userController';
 
 sequelize.sync().then(() => {
-    // new UserController().createUsuario();
+    console.log("sync");
 })
 
 const app = express();

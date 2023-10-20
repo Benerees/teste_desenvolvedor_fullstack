@@ -19,6 +19,7 @@ export class Userservice {
             throw new userInvalidCredentials()
             
         const token = jwt.sign({ sub: userData.email }, 'auth');
+        
         return token;
     }
 }

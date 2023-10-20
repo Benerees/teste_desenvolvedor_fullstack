@@ -1,13 +1,10 @@
 import { GeometryType } from "types/geometryType";
 import sequelize from "../config/database.config";
 import { DataTypes, Model } from "sequelize";
+import { PolygonType } from "types/polygonType";
 
-interface PoligonoAttributes {
-    id: string;
-    geometry: GeometryType;
-}
 
-export const Poligono = sequelize.define<Model<PoligonoAttributes>>('poligono', {
+export const Polygon = sequelize.define<Model<PolygonType>>('polygon', {
     id:
     {
         type: DataTypes.STRING,
@@ -19,16 +16,16 @@ export const Poligono = sequelize.define<Model<PoligonoAttributes>>('poligono', 
         type: DataTypes.GEOMETRY,
         allowNull: false,
     }
-},
+    },
     {
         freezeTableName: true,
-        tableName: "poligono",
+        tableName: "polygon",
     }
 );
 
-export class PoligonoInstance extends Model<PoligonoAttributes>{ }
+export class PolygonInstance extends Model<PolygonType>{ }
 
-PoligonoInstance.init(
+PolygonInstance.init(
     {
         id:
         {
@@ -46,6 +43,6 @@ PoligonoInstance.init(
     {
         freezeTableName: true,
         sequelize: sequelize,
-        tableName: "poligono",
+        tableName: "polygon",
     }
 );

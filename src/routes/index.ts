@@ -1,19 +1,19 @@
 import { Router } from 'express'
-import { PoligonoController } from '../controllers/poligonoController'
+import { PolygonController } from '../controllers/polygonController'
 import { UserController } from '../controllers/userController';
 import { Userservice } from '../services/userService';
-import authTokenMiddleware from '../middlewares/authTokenMiddlewaree';
+import { authTokenMiddleware } from '../middlewares/authTokenMiddlewaree';
 
 const router = Router();
 const userController = new UserController()
-const poligonoController = new PoligonoController()
+const polygonController = new PolygonController()
 
 router.post('/login', userController.login);
 
-router.post('/posts',  authTokenMiddleware ,poligonoController.createPoligono);
-router.put('/posts/:id', authTokenMiddleware, poligonoController.put);
-router.get('/posts', authTokenMiddleware, poligonoController.getPoligonos);
-router.get('/posts/:id', authTokenMiddleware, poligonoController.getId);
-router.delete('/posts/:id', authTokenMiddleware, poligonoController.delete);
+router.post('/posts',  authTokenMiddleware ,polygonController.createPolygon);
+router.put('/posts/:id', authTokenMiddleware, polygonController.putPolygon);
+router.get('/posts', authTokenMiddleware, polygonController.getAllPolygons);
+router.get('/posts/:id', authTokenMiddleware, polygonController.getByIdPolygon);
+router.delete('/posts/:id', authTokenMiddleware, polygonController.deletePolygon);
 
 export default router;

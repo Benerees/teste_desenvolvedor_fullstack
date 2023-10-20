@@ -1,14 +1,20 @@
 import { Request, Response } from "express";
-import { PoligonoService } from "../services/poligonoService"
+import { PoligonoService } from "../services/polygonService"
+import { GeometryType } from "../types/geometryType";
+import { PolygonType } from "types/polygonType";
 
 const service = new PoligonoService()
 
-export class PoligonoController {
+export class PolygonController {
 
-    async createPoligono(req: Request, res: Response) {
+    async createPolygon(req: Request, res: Response) {
+        const geometria: PolygonType = {
+            id: req.params['id'],
+            geometry: req.body.features[0].geometry
+        }
 
         try {
-            const result = await service.create(req);
+            const result = await service.create(geometria);
 
             return res.status(201).json({ message: 'Success', result: result })
         } catch (err: any) {
@@ -22,9 +28,9 @@ export class PoligonoController {
         }
     }
 
-    async getPoligonos(req: Request, res: Response) {
+    async getAllPolygons(req: Request, res: Response) {
         try {
-            const result = await service.get(req);
+            const result = await service.getAll();
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {
@@ -38,9 +44,11 @@ export class PoligonoController {
         }
     }
 
-    async getId(req: Request, res: Response) {
+    async getByIdPolygon(req: Request, res: Response) {
+        const { id } = req.params;
+
         try {
-            const result = await service.getById(req);
+            const result = await service.getById(id);
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {
@@ -54,9 +62,11 @@ export class PoligonoController {
         }
     }
 
-    async delete(req: Request, res: Response) {
+    async deletePolygon(req: Request, res: Response) {
+        const { id } = req.params;
+
         try {
-            const result = await service.delete(req)
+            const result = await service.delete(id)
 
             return res.status(204).json({ message: 'Success'})
         } catch (err: any) {
@@ -70,9 +80,14 @@ export class PoligonoController {
         }
     }
 
-    async put(req: Request, res: Response) {
-        try {
-            const result = await service.put(req)
+    async putPolygon(req: Request, res: Response) {
+        const geometria: PolygonType = {
+            id: req.params['id'],
+            geometry: req.body.features[0].geometry
+        }
+
+        try {   
+            const result = await service.put(geometria)
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {

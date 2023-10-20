@@ -2,7 +2,7 @@ const randomUUID = require('uuid').v4;
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.bulkInsert('poligono', [
+        return queryInterface.bulkInsert('polygon', [
             {
                 id: randomUUID(),
                 geometry: JSON.stringify({
@@ -138,6 +138,6 @@ module.exports = {
     },
 
     down: (queryInterface, Sequelize) => {
-        return queryInterface.bulkDelete('poligono', null, {});
+        return queryInterface.bulkDelete('polygon', null, {});
     },
 };

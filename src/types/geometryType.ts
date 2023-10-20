@@ -1,6 +1,6 @@
-export interface GeometryType{
+export interface GeometryType {
     type: string
-    coordinate: 
+    coordinate:
     [
         [
             [

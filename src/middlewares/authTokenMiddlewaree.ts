@@ -2,7 +2,9 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { tokenNotFoundError } from '../errors/tokenNotFound-error';
 import { tokenInvalidError } from '../errors/tokenInvalidError'
-function authTokenMiddleware(req: Request, res: Response, next: NextFunction) {
+
+
+export const authTokenMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization;
 
     if (!token)
@@ -16,4 +18,3 @@ function authTokenMiddleware(req: Request, res: Response, next: NextFunction) {
     });
 }
 
-export default authTokenMiddleware;

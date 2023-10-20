@@ -27,7 +27,7 @@
   },
   "scripts": {
     "seed": "npx sequelize db:seed:all",
-    "undoSeed": "npx sequelize db:seed:undo",
+    "undoSeed": "npx sequelize db:seed:undo:all",
     "dev": "npx ts-node ./src/index.ts",
     "build": "tsc --watch"
   }

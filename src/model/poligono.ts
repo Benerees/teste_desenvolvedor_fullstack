@@ -1,28 +1,23 @@
+import { GeometryType } from "types/geometryType";
 import sequelize from "../config/database.config";
 import { DataTypes, Model } from "sequelize";
 
 interface PoligonoAttributes {
     id: string;
-    longitude: string;
-    latitude: string;
+    geometry: GeometryType;
 }
 
-export const Poligono = sequelize.define('poligono', {
+export const Poligono = sequelize.define<Model<PoligonoAttributes>>('poligono', {
     id:
     {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
     },
-    longitude:
+    geometry:
     {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.GEOMETRY,
         allowNull: false,
-    },
-    latitude:
-    {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
     }
 },
     {
@@ -41,16 +36,12 @@ PoligonoInstance.init(
             allowNull: false,
             primaryKey: true,
         },
-        longitude:
+        geometry:
         {
-            type: DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.GEOMETRY,
             allowNull: false,
-        },
-        latitude:
-        {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-            allowNull: false
         }
+
     },
     {
         freezeTableName: true,

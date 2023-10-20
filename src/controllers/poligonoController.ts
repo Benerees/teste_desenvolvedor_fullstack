@@ -8,7 +8,7 @@ export class PoligonoController {
     async createPoligono(req: Request, res: Response) {
 
         try {
-            const result = await service.create(req, res);
+            const result = await service.create(req);
 
             return res.status(201).json({ message: 'Success', result: result })
         } catch (err: any) {
@@ -24,7 +24,7 @@ export class PoligonoController {
 
     async getPoligonos(req: Request, res: Response) {
         try {
-            const result = await service.get(req, res);
+            const result = await service.get(req);
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {
@@ -40,7 +40,7 @@ export class PoligonoController {
 
     async getId(req: Request, res: Response) {
         try {
-            const result = await service.getById(req, res);
+            const result = await service.getById(req);
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {
@@ -56,7 +56,7 @@ export class PoligonoController {
 
     async delete(req: Request, res: Response) {
         try {
-            const result = await service.delete(req, res)
+            const result = await service.delete(req)
 
             return res.status(204).json({ message: 'Success'})
         } catch (err: any) {
@@ -72,7 +72,7 @@ export class PoligonoController {
 
     async put(req: Request, res: Response) {
         try {
-            const result = await service.put(req, res)
+            const result = await service.put(req)
 
             return res.status(200).json({ message: 'Success', result: result })
         } catch (err: any) {

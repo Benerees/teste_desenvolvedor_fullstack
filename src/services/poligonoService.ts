@@ -2,73 +2,60 @@ import { randomUUID } from "crypto";
 import { Request, Response } from "express";
 import { Poligono } from "../model/poligono";
 import { PoligonoNotFoundError } from "../errors/poligonoNotFoundError";
+import { GeometryType } from "../types/geometryType";
 
 export class PoligonoService {
 
-    async create(req: Request, res: Response) {
-        const coordinatesJson = req.body.features[0].geometry.coordinates
+    async create(req: Request) {
+        const coordinatesJson: GeometryType = req.body.features[0].geometry
 
-        const coordinates = {
+        const geometry = {
             id: randomUUID(),
-            longitude: [] as any,
-            latitude: [] as any
+            geometry: coordinatesJson
         }
 
-        coordinatesJson.forEach((x: any) => {
-            coordinates.longitude.push(x[0]);
-            coordinates.latitude.push(x[1]);
-        });
+        const result = await Poligono.create(geometry)
 
-        const result = await Poligono.create(coordinates)
-        
         return result.dataValues;
     }
 
-    async get(req: Request, res: Response) {
+    async get(req: Request) {
         const data = await Poligono.findAll({ order: [['updatedAt', 'DESC']] })
 
         if (data.length === 0)
             throw new PoligonoNotFoundError();
-        
-        return data[0].dataValues
+
+        const allData = data.map(item => item.dataValues);
+
+        return allData
     }
 
-    async getById(req: Request, res: Response) {
+    async getById(req: Request) {
         const { id } = req.params;
 
         const data = await Poligono.findByPk(id)
 
         if (!data)
             throw new PoligonoNotFoundError();
-        
+
         return data.dataValues
     }
 
-    async put(req: Request, res: Response) {
-        const coordinatesJson = req.body.features[0].geometry.coordinates
-
-        const coordinates = {
-            longitude: [] as any,
-            latitude: [] as any
-        }
-
-        coordinatesJson.forEach((x: any) => {
-            coordinates.longitude.push(x[0]);
-            coordinates.latitude.push(x[1]);
-        });
+    async put(req: Request) {
+        const coordinatesJson: GeometryType = req.body.features[0].geometry
 
         const { id } = req.params;
 
-        const result = await Poligono.update(coordinates, { where: { id: id } })
-        
+        const result = await Poligono.update({geometry: coordinatesJson}, { where: { id: id } })
+
         return result
     }
 
-    async delete(req: Request, res: Response) {
+    async delete(req: Request) {
         const { id } = req.params;
 
         await Poligono.destroy({ where: { id: id } })
-        
+
         return true
     }
 }

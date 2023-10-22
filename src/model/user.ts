@@ -1,15 +1,10 @@
 
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database.config";
+import { UserType } from "types/userType";
 
-interface userAttributes {
-    id: string;
-    name: string;
-    password: string;
-    email: string;
-}
 
-export const User = sequelize.define('usuarios', {
+export const User = sequelize.define<Model<UserType>>('user', {
     id: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,9 +19,15 @@ export const User = sequelize.define('usuarios', {
     email: {
         type: DataTypes.STRING
     }
-});
+},
+{
+    freezeTableName: true,
+    tableName: "user"
+}
+);
 
-export class userInstance extends Model<userAttributes>{ }
+
+export class userInstance extends Model<UserType>{ }
 
 userInstance.init(
     {
@@ -54,7 +55,9 @@ userInstance.init(
 
     },
     {
+        freezeTableName: true,
         sequelize: sequelize,
-        tableName: "usuarios"
+        tableName: "user",
+        
     }
 );

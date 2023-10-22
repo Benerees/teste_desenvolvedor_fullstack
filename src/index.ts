@@ -1,10 +1,10 @@
 import express from 'express';
 import indexRoutes from './routes/index';
 import sequelize from "./config/database.config"
-import { UserController } from './controllers/User.controller';
+import { UserController } from './controllers/userController';
 
 sequelize.sync().then(() => {
-    new UserController().createUsuario();
+    console.log("sync");
 })
 
 const app = express();

@@ -11,4 +11,4 @@ RUN npm cache clean --force && npm install --global npm@9.5.0 && npm install
 
 COPY . $HOME/library
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

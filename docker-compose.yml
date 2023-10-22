@@ -2,10 +2,12 @@ version: '3.9'
 services:
   node:
     container_name: teste_backend
+    depends_on:
+      - database
     build:
       context: .
       dockerfile: Dockerfile
-    command: npx ts-node ./src/index.ts
+    command: npm run dev
     environment:
       NODE_ENV: development
     ports:
@@ -18,7 +20,7 @@ services:
     restart: always
 
   database:
-    image: postgres
+    image: postgis/postgis:15-3.3-alpine
     container_name: teste_database
     restart: always
     ports:
